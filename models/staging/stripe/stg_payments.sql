@@ -3,5 +3,5 @@ select id as payment_id,
        paymentmethod as payment_method,
        status,
        created as created_at,
-       round(amount/100, 2) as amount
+       round({{ cents_to_dollars('amount') }}, 2) as amount
 from {{ source('stripe', 'payment') }} 
